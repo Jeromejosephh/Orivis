@@ -154,15 +154,17 @@ class _CameraScreenState extends State<CameraScreen> {
           automaticallyImplyLeading: false,
           toolbarHeight: 68,
           titleSpacing: 16,
+          centerTitle: true,
           title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text('Inspect', style: Theme.of(c).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.w700,
                 letterSpacing: 0.3,
                 fontFamily: 'SF Pro Display',
               )),
-              Text('Capture or pick a photo', style: Theme.of(c).textTheme.bodySmall?.copyWith(
+              Text('Capture or choose a photo', style: Theme.of(c).textTheme.bodySmall?.copyWith(
                 color: Theme.of(c).colorScheme.onSurfaceVariant,
                 letterSpacing: 0.2,
               )),
@@ -178,15 +180,17 @@ class _CameraScreenState extends State<CameraScreen> {
           automaticallyImplyLeading: false,
           toolbarHeight: 68,
           titleSpacing: 16,
+          centerTitle: true,
           title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text('Inspect', style: Theme.of(c).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.w700,
                 letterSpacing: 0.3,
                 fontFamily: 'SF Pro Display',
               )),
-              Text('Capture or pick a photo', style: Theme.of(c).textTheme.bodySmall?.copyWith(
+              Text('Capture or choose a photo', style: Theme.of(c).textTheme.bodySmall?.copyWith(
                 color: Theme.of(c).colorScheme.onSurfaceVariant,
                 letterSpacing: 0.2,
               )),
@@ -213,15 +217,17 @@ class _CameraScreenState extends State<CameraScreen> {
         automaticallyImplyLeading: false,
         toolbarHeight: 68,
         titleSpacing: 16,
+        centerTitle: true,
         title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text('Inspect', style: Theme.of(c).textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.w700,
               letterSpacing: 0.3,
               fontFamily: 'SF Pro Display',
             )),
-            Text('Capture or pick a photo', style: Theme.of(c).textTheme.bodySmall?.copyWith(
+            Text('Capture or choose a photo', style: Theme.of(c).textTheme.bodySmall?.copyWith(
               color: Theme.of(c).colorScheme.onSurfaceVariant,
               letterSpacing: 0.2,
             )),

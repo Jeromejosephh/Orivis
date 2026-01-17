@@ -297,9 +297,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text('$okCount', style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.green)),
+                              FittedBox(child: Text('$okCount', style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.green))),
                               const SizedBox(height: 4),
-                              const Text('OK', style: TextStyle(fontSize: 12, color: Colors.green, fontWeight: FontWeight.w600)),
+                              const Text('OK', style: TextStyle(fontSize: 12, color: Colors.green, fontWeight: FontWeight.w600), maxLines: 1, overflow: TextOverflow.ellipsis),
                               Flexible(child: FittedBox(fit: BoxFit.scaleDown, child: Text('($periodLabel)', style: const TextStyle(fontSize: 10, color: Colors.green)))),
                             ],
                           ),
@@ -316,9 +316,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text('$defectCount', style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.red)),
+                              FittedBox(child: Text('$defectCount', style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.red))),
                               const SizedBox(height: 4),
-                              const Text('Defects', style: TextStyle(fontSize: 12, color: Colors.red, fontWeight: FontWeight.w600)),
+                              const Text('Defects', style: TextStyle(fontSize: 12, color: Colors.red, fontWeight: FontWeight.w600), maxLines: 1, overflow: TextOverflow.ellipsis),
                               Flexible(child: FittedBox(fit: BoxFit.scaleDown, child: Text('($periodLabel)', style: const TextStyle(fontSize: 10, color: Colors.red)))),
                             ],
                           ),
@@ -335,10 +335,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text('$okRate%', style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.blue)),
+                              FittedBox(child: Text('$okRate%', style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.blue))),
                               const SizedBox(height: 4),
-                              const Text('Pass Rate', style: TextStyle(fontSize: 12, color: Colors.blue, fontWeight: FontWeight.w600)),
-                              const Text('(Overall)', style: TextStyle(fontSize: 10, color: Colors.blue)),
+                              const Text('Pass Rate', style: TextStyle(fontSize: 12, color: Colors.blue, fontWeight: FontWeight.w600), maxLines: 1, overflow: TextOverflow.ellipsis),
                             ],
                           ),
                         ),
@@ -428,30 +427,25 @@ class _HomeScreenState extends State<HomeScreen> {
               Expanded(
                child: history.isEmpty
                    ? Center(
-                        child: Padding(
-                         padding: const EdgeInsets.all(32), //Empty state card
-                         child: ConstrainedBox(
-                            constraints: const BoxConstraints(maxWidth: 420),
-                            child: Card(
-                             elevation: 0,
-                              color: Colors.indigo.shade50,
-                              child: Padding(
-                               padding: const EdgeInsets.all(24),
-                               child: Column(
-                                 mainAxisSize: MainAxisSize.min,
-                                 children: [
-                                   Icon(Icons.inventory_2_outlined, size: 64, color: Colors.indigo.shade300),
-                                    const SizedBox(height: 16),
-                                    Text('No inspections yet', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w600)),
-                                    const SizedBox(height: 8),
-                                    Text('Start by capturing or selecting an image to inspect', textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.grey.shade700)),
-                                    const SizedBox(height: 20),
-                                    FilledButton.icon(onPressed: widget.onStartInspection, icon: const Icon(Icons.camera_alt), label: const Text('Start Inspection')),
-                                  ],
-                                ),
+                        child: SingleChildScrollView(
+                         child: Padding(
+                          padding: const EdgeInsets.all(32), //Empty state card
+                          child: Column(
+                           mainAxisSize: MainAxisSize.min,
+                           children: [
+                             Icon(Icons.inventory_2_outlined, size: 64, color: Colors.indigo.shade300),
+                              const SizedBox(height: 16),
+                              Text('No inspections yet', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w600), textAlign: TextAlign.center),
+                              const SizedBox(height: 8),
+                              Text('Start by capturing or selecting an image to inspect', textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.grey.shade700)),
+                              const SizedBox(height: 20),
+                              SizedBox(
+                                width: double.infinity,
+                                child: FilledButton.icon(onPressed: widget.onStartInspection, icon: const Icon(Icons.camera_alt), label: const Text('Start Inspection')),
                               ),
-                            ),
-                          ),
+                            ],
+                           ),
+                         ),
                         ),
                       )
                    : Builder(

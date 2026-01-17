@@ -37,8 +37,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
           automaticallyImplyLeading: false,
           toolbarHeight: 68,
           titleSpacing: 16,
+          centerTitle: true,
           title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text('Settings', style: Theme.of(c).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.w700,

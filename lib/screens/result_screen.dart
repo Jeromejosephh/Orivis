@@ -77,35 +77,41 @@ class _ResultScreenState extends State<ResultScreen> {
 
     return Scaffold(
       appBar: AppBar(title: const Text('Result')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0), //Page padding
-        child: Column(
-          children: [
-            Expanded(child: Image.file(widget.image)), //Show captured image
-            Text(titleText, style: titleStyle), //Show status title
-            FutureBuilder<double>(
-              future: settings.get(), //Fetch threshold
-              builder: (ctx, snap) {
-                final th = snap.data ?? 0.1; //Threshold value
-                final below = conf < th; //Below-threshold flag
-                return Column(
-                  children: [
-                    Text('Confidence: ${(conf * 100).toStringAsFixed(1)}%'), //Confidence as percentage
-                    const SizedBox(height: 6),
-                    if (below)
-                      Chip(
-                        label: Text('Below threshold (${(th * 100).toStringAsFixed(0)}%)'), //Threshold as percentage
-                        backgroundColor: Colors.orange.shade100,
-                      ),
-                  ],
-                );
-              },
-            ),
-            const SizedBox(height: 12),
-            Form(
-              key: _formKey, //Attach form key
-              autovalidateMode: AutovalidateMode.onUserInteraction, //Live validation
-              child: Column(
+      resizeToAvoidBottomInset: true,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0), //Page padding
+          child: Column(
+            children: [
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxHeight: 300),
+                child: Image.file(widget.image), //Show captured image
+              ),
+              const SizedBox(height: 12),
+              Text(titleText, style: titleStyle), //Show status title
+              FutureBuilder<double>(
+                future: settings.get(), //Fetch threshold
+                builder: (ctx, snap) {
+                  final th = snap.data ?? 0.1; //Threshold value
+                  final below = conf < th; //Below-threshold flag
+                  return Column(
+                    children: [
+                      Text('Confidence: ${(conf * 100).toStringAsFixed(1)}%'), //Confidence as percentage
+                      const SizedBox(height: 6),
+                      if (below)
+                        Chip(
+                          label: Text('Below threshold (${(th * 100).toStringAsFixed(0)}%)'), //Threshold as percentage
+                          backgroundColor: Colors.orange.shade100,
+                        ),
+                    ],
+                  );
+                },
+              ),
+              const SizedBox(height: 12),
+              Form(
+                key: _formKey, //Attach form key
+                autovalidateMode: AutovalidateMode.onUserInteraction, //Live validation
+                child: Column(
                 children: [
                   TextFormField(
                     controller: productIdCtrl,
@@ -179,9 +185,10 @@ class _ResultScreenState extends State<ResultScreen> {
                     ),
                   ),
                 ],
+                ),
               ),
-            )
-          ],
+            ],
+          ),
         ),
       ),
     );

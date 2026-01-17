@@ -1,7 +1,6 @@
 //history_screen.dart
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../services/logging_service.dart';
 
 class HistoryScreen extends StatefulWidget {
   const HistoryScreen({super.key});
@@ -100,20 +99,23 @@ class _HistoryScreenState extends State<HistoryScreen> {
                     ElevatedButton(
                       onPressed: () async {
                         final now = DateTime.now();
+                        if (!mounted) return;
                         final start = await showDatePicker(
-                          context: ctx,
+                          context: context,
                           initialDate: _customStart ?? now,
                           firstDate: DateTime(2000),
                           lastDate: DateTime.now(),
                         );
                         if (start == null) return;
+                        if (!mounted) return;
                         final end = await showDatePicker(
-                          context: ctx,
+                          context: context,
                           initialDate: _customEnd ?? now,
                           firstDate: start,
                           lastDate: DateTime.now(),
                         );
                         if (end == null) return;
+                        if (!mounted) return;
                         setState(() {
                           _dateFilter = 'custom';
                           _customStart = start;
@@ -167,8 +169,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        primary: isSelected ? Theme.of(context).colorScheme.primary : null,
-        onPrimary: isSelected ? Colors.white : null,
+        backgroundColor: isSelected ? Theme.of(context).colorScheme.primary : null,
+        foregroundColor: isSelected ? Colors.white : null,
       ),
       child: Text(label),
     );
